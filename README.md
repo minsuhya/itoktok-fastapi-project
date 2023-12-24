@@ -1,4 +1,4 @@
-# FastApi + Vue + Tailwindcss 환경
+# FastApi
 
 <!-- vim-markdown-toc GFM -->
 

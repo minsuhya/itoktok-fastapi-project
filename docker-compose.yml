@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  fastapi:
+    # image: fastapi
+    build:
+      .
+      # context: .
+      # dockerfile: .
+    command: sh -c "dockerize -wait tcp://db:3306 -timeout 20s && uvicorn app.main:app --host 0.0.0.0 --port 80 --reload"
+    restart: always
+    ports:
+      - 2081:80
+      - 5678:5678
+    volumes:
+      - ./app:/code/app
+    depends_on:
+      - db
+    networks:
+      - fastnet
+
+  db:
+    image: mysql:8
+    restart: always
+    ports:
+      - 33062:3306
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    env_file: .env
+    networks:
+      - fastnet
+
+networks:
+  fastnet:
+    driver: bridge

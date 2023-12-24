@@ -1,0 +1,66 @@
+{% extends "users/users.html" %}
+
+{% block title %}무료사용신청{% endblock %}
+{% block content %}
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-7">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">무료 사용 신청서</h1>
+                    </div>
+                    <form class="user" action="/users/signup" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="center_name" id="center_name" placeholder="신청기관명">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="biz_no" id="biz_no" placeholder="사업자등록번호">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="user_name" id="user_name" placeholder="센터장님 성함">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="hp" id="hp" placeholder="연락처(전화번호 or 휴대폰번호)">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="이메일 주소">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="user_id" id="user_id" placeholder="마스터관리자 희망ID">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="memo" id="memo" placeholder="기타요청사항">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="마스터 비밀번호">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control form-control-user" name="confirm_password" id="confirm_password" placeholder="마스터 비밀번호 확인">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block"> 무료사용 신청 </button>
+                        <!-- <hr> -->
+                        <!-- <a href="index.html" class="btn btn-google btn-user btn-block"> -->
+                            <!-- <i class="fab fa-google fa-fw"></i> Register with Google -->
+                        <!-- </a> -->
+                        <!-- <a href="index.html" class="btn btn-facebook btn-user btn-block"> -->
+                            <!-- <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook -->
+                        <!-- </a> -->
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <a class="small" href="/users/forgot-password">비밀번호 찾기</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="/users/signin">로그인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

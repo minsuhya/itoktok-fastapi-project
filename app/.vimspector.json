@@ -1,0 +1,81 @@
+{
+  "adapters": {
+    "python-remote": {
+      "port": "${port}",
+      "launch": {
+        "remote": {
+          "container": "${container}",
+          "launchCommmand": [
+            "python",
+            "-m",
+            "debugpy",
+            "--listen",
+            "0.0.0.0:${port}",
+            "%CMD"
+          ]
+        }
+      },
+      "attach": {
+        "remote": {
+          "container": "${container}",
+          "pidCommand": ["sh", "-c", "pgrep", "-f", "${filename}"],
+          "attachCommand": [
+            "sh",
+            "-c",
+            "python",
+            "-m",
+            "debugpy",
+            "--listen",
+            "0.0.0.0:${port}",
+            "--pid",
+            "%PID%"
+          ]
+        }
+      }
+    }
+  },
+  "configurations": {
+    "remote-launch": {
+      "adapter": "python-remote",
+      "remote-request": "launch",
+      "remote-cmdLine": ["${RemoteRoot}/${fileBasename}", "*${args}"],
+      "configuration": {
+        "request": "attach",
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "${RemoteRoot}"
+          }
+        ]
+      }
+    },
+    "remote-attach": {
+      "adapter": "python-remote",
+      "remote-request": "attach",
+
+      "configuration": {
+        "request": "attach",
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "${RemoteRoot}"
+          }
+        ]
+      }
+    },
+    "multi-session": {
+      "adapter": "multi-session",
+      "filetypes": ["python"],
+      "pythonArgs": ["-Xfrozen_modules=off"],
+      "configuration": {
+        "request": "attach",
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/code/app"
+          }
+        ]
+      }
+    }
+  }
+}
